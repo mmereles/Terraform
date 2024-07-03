@@ -31,6 +31,11 @@ jobs:
           # AWS Secret Access Key. Required if aws-access-key-id is provided.
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+    - name: Test configuration of AWS CLI
+      run: |
+        aws --version
+        aws configure list
+
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v2.0.3
 
