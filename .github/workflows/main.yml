@@ -30,12 +30,11 @@ jobs:
       # AWS Secret Access Key. Required if aws-access-key-id is provided.
         aws-secret-access-key: ${{ AWS_SECRET_ACCESS_KEY }}
 
-    - name: Deploy EKS
+    - name: Install Terraform
       uses: hashicorp/setup-terraform@v2.0.3
+
+    - name: Terraform init
       run: |
         cd eks/
         terraform init
-        terraform validate
-        terraform apply --auto-approve
-
-          
+      
