@@ -1,6 +1,7 @@
 # Deploy Terraform pipeline provision to deploy to AWS EKS
 name: EKS Deploy
 
+on: workflow_dispatch
 env:
   # Verbosity setting for terraform log
   TF_LOG: INFO
