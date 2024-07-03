@@ -45,4 +45,41 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply --auto-approve
+
+  delete_eks_cluster:
+    name: "Delete EKS Cluster"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: eks/
+
+    steps:
+      - name: Checkout the repository to the runner
+        uses: actions/checkout@v2
+
+      - name: Add profile credentials to ~/.aws/credentials
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }} --profile default
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile default
+
+      - name: Test configuration of AWS CLI
+        run: |
+          aws --version
+          aws configure list
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+    
+      - name: Terraform init
+        run: terraform init
+    
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Destroy
+        run: terraform destroy
+
+    
+    
       
