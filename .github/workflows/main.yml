@@ -38,6 +38,7 @@ jobs:
 
     - name: Terraform init
       run: |
+        cat ~/.aws/credentials
         ls
         terraform init
       
