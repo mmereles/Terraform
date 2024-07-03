@@ -5,9 +5,11 @@ on: workflow_dispatch
 env:
   # Verbosity setting for terraform log
   TF_LOG: INFO
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: us-east-1
+
+defaults:
+  run:
+    working-directory: eks/
 
 jobs:
   deploy:
@@ -35,7 +37,5 @@ jobs:
       uses: hashicorp/setup-terraform@v2.0.3
 
     - name: Terraform init
-      run: |
-        cd eks/
-        terraform init
+      run: terraform init
       
