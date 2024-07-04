@@ -41,7 +41,7 @@ module "eks" {
     }
 
     eks_managed_node_groups = {
-    ascode-cluster-wg = {
+    node1 = {
       min_size     = 1
       max_size     = 2
       desired_size = 1
@@ -53,7 +53,9 @@ module "eks" {
         ExtraTag = "helloworld"
       }
     }
-  }
+}
+
+manage_aws_auth_configmap = true
 
   tags = {
     env       = "dev"
