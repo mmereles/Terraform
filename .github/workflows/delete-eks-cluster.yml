@@ -1,5 +1,5 @@
 # Deploy Terraform pipeline provision to deploy to AWS EKS
-name: EKS Deploy
+name: Delete EKS Cluster
 
 on: workflow_dispatch
 env:
